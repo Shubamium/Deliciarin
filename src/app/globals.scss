@@ -20,10 +20,11 @@ body {
 
 body {
   color: var(--blue);
+  overflow: hidden;
   // Backgrounds
   &::after {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0%;
     left: 0%;
     width: 100vw;
@@ -52,7 +53,7 @@ body {
     z-index: -100;
     user-select: none;
     pointer-events: none;
-    position: absolute;
+    position: fixed;
     top: 0%;
     filter: blur(5px);
     left: 0%;
@@ -67,6 +68,9 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+main {
+  height: 100%;
 }
 
 button {

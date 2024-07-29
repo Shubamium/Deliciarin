@@ -3,6 +3,7 @@
   bottom: 0%;
   right: 0%;
   display: flex;
+  z-index: 100;
   gap: 1em;
   .btn-bottom {
     background: white;
@@ -13,10 +14,11 @@
     font-size: 1.5vw;
     // gap: ;
     justify-content: space-between;
-    border: 0.3vw solid var(--blue);
+    border: 0.3vw solid var(--dBlue);
     border-radius: 1vw 1vw 0 0;
     border-bottom: none;
     transform-origin: bottom;
+    color: var(--dBlue);
     svg {
       width: 1vw;
     }

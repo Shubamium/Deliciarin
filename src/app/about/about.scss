@@ -47,6 +47,20 @@
     article {
       display: flex;
       flex-direction: column;
+      position: relative;
+      padding: 2em 0;
+      .decor_t {
+        position: absolute;
+        top: 0%;
+        right: 30%;
+        max-width: 100px;
+        &.b {
+          top: initial;
+          scale: 1 -1;
+          bottom: 0%;
+        }
+      }
+
       .info {
         display: flex;
         .about {
@@ -81,7 +95,8 @@
         // margin: 1em;
         gap: 1em;
         .btn-social {
-          width: 100%;
+          width: 100px;
+          height: 100px;
           background: #c0d2e9;
           outline: 4px solid var(--dBlue);
           outline-offset: -2px;

@@ -44,10 +44,9 @@ export default function About({}: Props) {
             <a href="/" target="_blank" className="btn btn-social">
               <BsYoutube />
             </a>
-            <a href="/" target="_blank" className="btn btn-social">
-              <BsYoutube />
-            </a>
           </div>
+          <img src="/decors/about_t.png" alt="" className="decor_t t" />
+          <img src="/decors/about_t.png" alt="" className="decor_t b" />
         </article>
       </section>
     </main>

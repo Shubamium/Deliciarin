@@ -1,0 +1,59 @@
+#loading {
+  position: fixed;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  transition: all 900ms ease;
+  &.loaded {
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+
+    .waves {
+      top: 120vh;
+      opacity: 0.2;
+    }
+    .swimdeli {
+      bottom: -50%;
+      opacity: 0;
+    }
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .loader {
+    animation: speen 1s infinite linear;
+    font-size: 5rem;
+  }
+  p {
+    font-size: 2rem;
+  }
+  .waves {
+    position: fixed;
+    transition: all 900ms ease;
+    top: 90vh;
+    height: 20vh;
+    scale: 2 3;
+  }
+  .swimdeli {
+    position: absolute;
+    z-index: -2;
+    bottom: 5%;
+    width: 30vh;
+    animation: swim-deli 1.5s infinite linear;
+    transition: all 500ms ease;
+    @keyframes swim-deli {
+      0% {
+        transform: translateY(0vh);
+      }
+      50% {
+        transform: translateY(-10vh) scaleX(0.95);
+      }
+      100% {
+        transform: translateY(0vh);
+      }
+    }
+  }
+}

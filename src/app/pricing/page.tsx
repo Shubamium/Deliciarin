@@ -192,6 +192,8 @@ function Extras() {
             </div>
           </div>
         </div>
+        <img src="/decors/twintail.png" alt="" className="twintail t" />
+        <img src="/decors/twintail.png" alt="" className="twintail b" />
       </div>
     </div>
   );

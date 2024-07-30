@@ -3,6 +3,7 @@ import { Chelsea_Market, Chewy } from "next/font/google";
 import "./globals.scss";
 import { CSSProperties } from "react";
 import Interface from "./layout/interface/Interface";
+import Loading from "./layout/loading/Loading";
 
 const chelsea = Chelsea_Market({ subsets: ["latin"], weight: "400" });
 const chewy = Chewy({ subsets: ["latin"], weight: "400" });
@@ -29,6 +30,7 @@ export default function RootLayout({
         }
       >
         <Interface />
+        <Loading />
         {children}
       </body>
     </html>

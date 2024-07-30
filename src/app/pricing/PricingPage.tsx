@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./pricing.scss";
 import { GiCheckMark } from "react-icons/gi";
 import { FaStar } from "react-icons/fa";
@@ -7,6 +7,9 @@ import { BiFlag, BiListPlus, BiPackage, BiPlusCircle } from "react-icons/bi";
 import { IoCheckmarkCircle, IoCheckmarkOutline } from "react-icons/io5";
 import { BsYoutube } from "react-icons/bs";
 import { FaServicestack } from "react-icons/fa6";
+import { AnimatePresence, stagger, useAnimate } from "framer-motion";
+import { motion } from "framer-motion";
+
 type Props = {
   services: any[];
 };
@@ -62,20 +65,33 @@ export default function PricingPage({ services }: Props) {
           </div>
         </div>
         <div className="content">
-          {active === 0 && <PackageA />}
-          {active === 1 && <PackageB />}
-          {active === 2 && <PackageC services={services} />}
-          {active === 3 && <General />}
-          {active === 3 && <Extras />}
+          <AnimatePresence mode="wait">
+            {active === 0 && <PackageA key={"package_a"} />}
+            {active === 1 && <PackageB key={"package_b"} />}
+            {active === 2 && <PackageC key={"services"} services={services} />}
+            {active === 3 && <General key={"general"} />}
+            {active === 4 && <Extras key={"extras"} />}
+          </AnimatePresence>
         </div>
       </section>
     </main>
   );
 }
 
+const topVariant = {
+  initial: { opacity: 0, x: -200 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: 200 },
+};
+
 function Extras() {
   return (
-    <div id="extras">
+    <motion.div
+      id="extras"
+      initial={topVariant.initial}
+      animate={topVariant.animate}
+      exit={topVariant.exit}
+    >
       <div className="art">
         <img src="/graphics/deli-extras.png" alt="" className="extra-deli" />
         <img src="/decors/star_big.png" alt="" className="star l" />
@@ -207,12 +223,46 @@ function Extras() {
         <img src="/decors/twintail.png" alt="" className="twintail t" />
         <img src="/decors/twintail.png" alt="" className="twintail b" />
       </div>
-    </div>
+    </motion.div>
   );
 }
 function General() {
+  const [scope, animate] = useAnimate();
+  useEffect(() => {
+    const playAnimation = async () => {
+      await animate(
+        ".p-panel",
+        {
+          opacity: 0,
+          scale: 0,
+        },
+        {
+          duration: 0,
+        }
+      );
+      animate(
+        ".p-panel",
+        {
+          opacity: 1,
+          scale: 1,
+        },
+        {
+          duration: 0.5,
+          type: "spring",
+          delay: stagger(0.2),
+        }
+      );
+    };
+    playAnimation();
+  }, []);
   return (
-    <div id="general">
+    <motion.div
+      id="general"
+      initial={topVariant.initial}
+      animate={topVariant.animate}
+      exit={topVariant.exit}
+      ref={scope}
+    >
       <div className="pricing-list left">
         <div className="p-panel">
           <h3>OVERLAYS</h3>
@@ -365,12 +415,47 @@ function General() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 function PackageC({ services }: { services: any[] }) {
+  const [scope, animate] = useAnimate();
+  useEffect(() => {
+    const playAnimation = async () => {
+      await animate(
+        ".set-card",
+        {
+          opacity: 0,
+          scale: 0,
+        },
+        {
+          duration: 0,
+        }
+      );
+      animate(
+        ".set-card",
+        {
+          opacity: 1,
+          scale: 1,
+        },
+        {
+          duration: 0.7,
+          type: "spring",
+          delay: stagger(0.2),
+        }
+      );
+    };
+    playAnimation();
+  }, []);
   return (
-    <div id="package_b" className="smaller">
+    <motion.div
+      initial={topVariant.initial}
+      animate={topVariant.animate}
+      exit={topVariant.exit}
+      id="package_b"
+      className="smaller"
+      ref={scope}
+    >
       {services &&
         services.length !== 0 &&
         services.map((serv) => {
@@ -411,12 +496,46 @@ function PackageC({ services }: { services: any[] }) {
           </p>
         </div>
       </div> */}
-    </div>
+    </motion.div>
   );
 }
 function PackageB() {
+  const [scope, animate] = useAnimate();
+  useEffect(() => {
+    const playAnimation = async () => {
+      await animate(
+        ".set-card",
+        {
+          opacity: 0,
+          scale: 0,
+        },
+        {
+          duration: 0,
+        }
+      );
+      animate(
+        ".set-card",
+        {
+          opacity: 1,
+          scale: 1,
+        },
+        {
+          duration: 0.7,
+          type: "spring",
+          delay: stagger(0.2),
+        }
+      );
+    };
+    playAnimation();
+  }, []);
   return (
-    <div id="package_b">
+    <motion.div
+      initial={topVariant.initial}
+      animate={topVariant.animate}
+      exit={topVariant.exit}
+      id="package_b"
+      ref={scope}
+    >
       <div className="set-card">
         <div className="data">
           <h2>
@@ -453,12 +572,17 @@ function PackageB() {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 function PackageA() {
   return (
-    <div id="package_a">
+    <motion.div
+      initial={topVariant.initial}
+      animate={topVariant.animate}
+      exit={topVariant.exit}
+      id="package_a"
+    >
       <div className="normal-set">
         <div className="set-list">
           <div className="set">
@@ -562,6 +686,6 @@ function PackageA() {
           <p>€200</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

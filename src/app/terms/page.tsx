@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import "./terms.scss";
 import { FaPaintBrush, FaStar } from "react-icons/fa";
 import { BsBrushFill, BsPaypal, BsYoutube } from "react-icons/bs";
@@ -8,6 +9,7 @@ import { RiErrorWarningFill } from "react-icons/ri";
 import Link from "next/link";
 import { FiTwitch } from "react-icons/fi";
 import { GiCancel } from "react-icons/gi";
+import { AnimatePresence } from "framer-motion";
 type Props = {};
 
 export default function Portfolio({}: Props) {
@@ -50,45 +52,73 @@ export default function Portfolio({}: Props) {
           </button>
         </div>
         <div className="panel-content">
-          {active === 0 && (
-            <IntroSection
-              click={() => {
-                setActive(1);
-              }}
-            />
-          )}
-          {active === 1 && <Guideline />}
-          {active === 2 && <Payment />}
+          <AnimatePresence mode="wait">
+            {active === 0 && (
+              <IntroSection
+                click={() => {
+                  setActive(1);
+                }}
+              />
+            )}
+            {active === 1 && <Guideline />}
+            {active === 2 && <Payment />}
+          </AnimatePresence>
         </div>
       </section>
     </main>
   );
 }
 
+const topVariant = {
+  initial: { opacity: 0, scaleY: 0 },
+  animate: { opacity: 1, scaleY: 1 },
+  exit: { opacity: 0, x: 200, scaleY: 0 },
+};
+const cardVar = {
+  initial: { opacity: 0, rotate: -90 },
+  animate: { opacity: 1, rotate: 0 },
+};
 function IntroSection({ click }: any) {
   return (
-    <div className="intro-section">
+    <motion.div
+      initial={topVariant.initial}
+      animate={topVariant.animate}
+      exit={topVariant.exit}
+      className="intro-section"
+    >
       <figure>a</figure>
       <article>
         <h3>THANKS SO MUCH FOR CONSIDERING A COMMISSION FROM ME! ✦ </h3>
         <p>
           Please only start a request if you find the service details and my
-          acceptable. After talking with me through DMs, you must make half
-          payment to apply to my waitlist, and when it&#39;s your turn you need
-          to other half to start your commission.
+          acceptable. After talking with me <u>through DMs</u>, you must make
+          half payment to <u>apply to my waitlist</u>, and when it&#39;s your
+          turn you need to other half to start your commission.
         </p>
         <button className="btn btn-guide" onClick={click}>
           View Guidelines <FaStar />
         </button>
       </article>
-    </div>
+    </motion.div>
   );
 }
 function Guideline() {
   return (
-    <div className="guideline">
+    <motion.div
+      initial={topVariant.initial}
+      animate={topVariant.animate}
+      exit={topVariant.exit}
+      className="guideline"
+    >
       <div className="guide-notes">
-        <div className="guide-card">
+        <motion.div
+          initial={cardVar.initial}
+          animate={cardVar.animate}
+          transition={{
+            delay: 0.5,
+          }}
+          className="guide-card"
+        >
           <img src="/graphics/chibi1.png" alt="" className="chibi" />
           <div className="text">
             <p>
@@ -96,8 +126,15 @@ function Guideline() {
               design, and design inspired clip-art.
             </p>
           </div>
-        </div>
-        <div className="guide-card">
+        </motion.div>
+        <motion.div
+          initial={cardVar.initial}
+          animate={cardVar.animate}
+          transition={{
+            delay: 1,
+          }}
+          className="guide-card"
+        >
           <img src="/graphics/chibi2.png" alt="" className="chibi" />
           <div className="text">
             <p>
@@ -105,8 +142,15 @@ function Guideline() {
               can do a lot, and try a lot, but I do have a particular style.
             </p>
           </div>
-        </div>
-        <div className="guide-card">
+        </motion.div>
+        <motion.div
+          initial={cardVar.initial}
+          animate={cardVar.animate}
+          transition={{
+            delay: 1.5,
+          }}
+          className="guide-card"
+        >
           <img src="/graphics/chibi3.png" alt="" className="chibi" />
           <div className="text">
             <p>
@@ -115,7 +159,7 @@ function Guideline() {
             </p>
             <p>I would like to do your design justice!</p>
           </div>
-        </div>
+        </motion.div>
       </div>
       <div className="guide-info">
         <div className="artwork">
@@ -134,12 +178,17 @@ function Guideline() {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 function Payment() {
   return (
-    <div className="payment">
+    <motion.div
+      initial={topVariant.initial}
+      animate={topVariant.animate}
+      exit={topVariant.exit}
+      className="payment"
+    >
       <div className="info-part">
         <div className="top">
           <h3>Deadlines</h3>
@@ -204,6 +253,6 @@ function Payment() {
           <GiCancel />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

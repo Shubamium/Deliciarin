@@ -1,13 +1,51 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import { BsDiscord, BsTiktok, BsTwitterX, BsYoutube } from "react-icons/bs";
-
+import { motion, stagger, useAnimate } from "framer-motion";
 type Props = {};
 import "./about.scss";
 import { GiSharkBite, GiSharkFin, GiSharkJaws } from "react-icons/gi";
 import { BiCoffee, BiCrown } from "react-icons/bi";
 export default function About({}: Props) {
+  const [scope, animate] = useAnimate();
+  useEffect(() => {
+    const animateBtn = async () => {
+      if (scope.current) {
+        await animate(
+          ".contact-btn .btn-social",
+          {
+            opacity: 0,
+            scale: 0,
+          },
+          {
+            duration: 0,
+          }
+        );
+        animate(
+          ".contact-btn .btn-social",
+          {
+            opacity: 1,
+            scale: 1,
+          },
+          {
+            duration: 0.2,
+            delay: stagger(0.4),
+          }
+        );
+      }
+    };
+    animateBtn();
+  }, []);
   return (
-    <main id="page_about">
+    <motion.main
+      initial={{ opacity: 0, scale: 0.9, y: 100 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{
+        duration: 0.5,
+      }}
+      id="page_about"
+      ref={scope}
+    >
       <section id="about-panel">
         <figure className="art-part">
           <img src="/decors/water.png" alt="" className="water" />
@@ -77,6 +115,6 @@ export default function About({}: Props) {
           <img src="/decors/about_t.png" alt="" className="decor_t b" />
         </article>
       </section>
-    </main>
+    </motion.main>
   );
 }

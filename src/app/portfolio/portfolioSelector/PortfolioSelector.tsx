@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { HiCursorClick } from "react-icons/hi";
 import { TfiFullscreen } from "react-icons/tfi";
-
+import { AnimatePresence, motion } from "framer-motion";
 type Props = {
   ptList: any[];
 };
@@ -49,7 +49,22 @@ export default function PortfolioSelector({ ptList }: Props) {
           {imageList &&
             imageList.length > 0 &&
             imageList.map((img: any, index: number) => (
-              <div
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  scale: 0.5,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.3,
+                }}
                 className="port-card"
                 onClick={() => {
                   setModalImg({
@@ -68,7 +83,7 @@ export default function PortfolioSelector({ ptList }: Props) {
                 <button className="btn btn-fs">
                   <TfiFullscreen />
                 </button>
-              </div>
+              </motion.div>
             ))}
           {/* <div className="port-card">
             <img src="/graphics/port_sample.png" alt="" className="port-img" />
@@ -138,19 +153,44 @@ export default function PortfolioSelector({ ptList }: Props) {
           </div> */}
         </div>
       </section>
-      {modalImg !== null && (
-        <div className="modal" onClick={() => setModalImg(null)}>
-          {modalImg.type === "images" && (
-            <img src={modalImg.source} className="sample" />
-          )}
-          {modalImg.type === "video" && (
-            <video src={modalImg.source} autoPlay controls className="sample" />
-          )}
-          <p>
-            Click anywhere to close <HiCursorClick />
-          </p>
-        </div>
-      )}
+      <AnimatePresence>
+        {modalImg !== null && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              scale: 0,
+            }}
+            exit={{
+              opacity: 0,
+              scale: 0,
+              transition: {
+                duration: 0.5,
+              },
+            }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+            }}
+            className="modal"
+            onClick={() => setModalImg(null)}
+          >
+            {modalImg.type === "images" && (
+              <img src={modalImg.source} className="sample" />
+            )}
+            {modalImg.type === "video" && (
+              <video
+                src={modalImg.source}
+                autoPlay
+                controls
+                className="sample"
+              />
+            )}
+            <p>
+              Click anywhere to close <HiCursorClick />
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

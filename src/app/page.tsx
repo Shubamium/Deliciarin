@@ -1,3 +1,5 @@
+"use client";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import "./home.scss";
 export default function Home() {
@@ -5,11 +7,38 @@ export default function Home() {
     <main id={"page_home"}>
       <section id="main-section">
         <figure>
-          <img src="/graphics/hero_art.png" alt="" className="deliart" />
+          <motion.img
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{
+              duration: 0.5,
+            }}
+            src="/graphics/hero_art.png"
+            alt=""
+            className="deliart"
+          />
         </figure>
         <article>
-          <img src="/graphics/logo.png" alt="deli-logo" className="logo" />
-          <div className="actions">
+          <motion.img
+            initial={{ x: 100, scale: 0 }}
+            animate={{ x: 0, scale: 1 }}
+            transition={{
+              duration: 0.5,
+              delay: 0.5,
+            }}
+            src="/graphics/logo.png"
+            alt="deli-logo"
+            className="logo"
+          />
+          <motion.div
+            initial={{ y: -100, scale: 0 }}
+            animate={{ y: -20, scale: 1 }}
+            transition={{
+              duration: 0.5,
+              delay: 1,
+            }}
+            className="actions"
+          >
             <Link href={"/about"} className="btn btn-hero about">
               {" "}
               <span> About Me</span>
@@ -54,7 +83,7 @@ export default function Home() {
                 </defs>
               </svg>
             </Link>
-          </div>
+          </motion.div>
         </article>
       </section>
     </main>

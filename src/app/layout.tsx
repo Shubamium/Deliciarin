@@ -49,8 +49,8 @@ export default function RootLayout({
           } as CSSProperties
         }
       >
-        <Interface />
         <Loading />
+        <Interface />
         {children}
       </body>
     </html>

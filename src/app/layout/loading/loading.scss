@@ -4,7 +4,10 @@
   width: 100vw;
   height: 100vh;
   background: white;
-  transition: all 900ms ease;
+  transition:
+    all 900ms ease,
+    width 0ms,
+    height 0ms;
   &.loaded {
     opacity: 0;
     user-select: none;

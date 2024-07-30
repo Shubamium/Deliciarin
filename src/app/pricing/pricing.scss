@@ -195,7 +195,9 @@
             color: white;
             text-align: center;
             font-family: var(--fontAlt);
-            text-shadow: 0px 0px 4px var(--shadow), 2px 2px 0px var(--shadow);
+            text-shadow:
+              0px 0px 4px var(--shadow),
+              2px 2px 0px var(--shadow);
           }
 
           .includes {
@@ -240,8 +242,10 @@
         flex-direction: column;
         gap: 2em;
         padding-top: 100px;
+
         .set-card {
           transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          gap: 1em;
           &:hover {
             scale: 1.05;
           }
@@ -288,6 +292,21 @@
             span {
               font-size: 1rem;
               opacity: 0.8;
+            }
+          }
+        }
+        &.smaller {
+          .set-card {
+            .data {
+              h2 {
+                font-size: 2rem;
+              }
+              .sub {
+                font-size: 1.5rem;
+              }
+            }
+            .price {
+              font-size: 4rem;
             }
           }
         }

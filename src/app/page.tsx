@@ -13,7 +13,7 @@ export default function Home() {
             transition={{
               duration: 0.5,
             }}
-            src="/graphics/hero_art.png"
+            src="/graphics/hero_art.webp"
             alt=""
             className="deliart"
           />

@@ -4,6 +4,7 @@ import "./globals.scss";
 import { CSSProperties } from "react";
 import Interface from "./layout/interface/Interface";
 import Loading from "./layout/loading/Loading";
+import ParticleController from "./layout/particleController/ParticleController";
 
 const chelsea = Chelsea_Market({ subsets: ["latin"], weight: "400" });
 const chewy = Chewy({ subsets: ["latin"], weight: "400" });

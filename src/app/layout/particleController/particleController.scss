@@ -1,0 +1,11 @@
+#bubbles {
+  position: fixed;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  user-select: none;
+  pointer-events: none;
+  // background: red;
+  filter: hue-rotate(-10deg) saturate(0.7);
+  opacity: 0.6;
+}
